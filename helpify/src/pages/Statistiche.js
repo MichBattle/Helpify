@@ -1,11 +1,11 @@
 // src/pages/Statistiche.js
 import React from 'react';
+import Statistics from '../components/Statistics/Statistics';
 
 const Statistiche = () => {
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Statistiche</h1>
-      <p>Questa sezione mostrerà le tue statistiche di ascolto.</p>
+      <Statistics />
     </div>
   );
 };
