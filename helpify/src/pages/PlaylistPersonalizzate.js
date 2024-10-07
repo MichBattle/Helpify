@@ -1,11 +1,11 @@
 // src/pages/PlaylistPersonalizzate.js
 import React from 'react';
+import PlaylistGenerator from '../components/PlaylistGenerator/PlaylistGenerator';
 
 const PlaylistPersonalizzate = () => {
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Playlist Personalizzate</h1>
-      <p>Questa sezione sarà dedicata alla generazione di playlist personalizzate.</p>
+      <PlaylistGenerator />
     </div>
   );
 };

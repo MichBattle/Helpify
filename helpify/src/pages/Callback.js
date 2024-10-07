@@ -6,13 +6,20 @@ const Callback = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Estrai il token dall'URL
+    // Estrai il token e la scadenza dall'URL
     const hash = window.location.hash;
-    const token = new URLSearchParams(hash.substring(1)).get('access_token');
+    const params = new URLSearchParams(hash.substring(1));
+    const token = params.get('access_token');
+    const expiresIn = params.get('expires_in'); // in secondi
 
     if (token) {
-      // Salva il token (es. localStorage)
+      // Calcola il tempo di scadenza
+      const expirationTime = new Date().getTime() + expiresIn * 1000;
+
+      // Salva il token e il tempo di scadenza nel localStorage
       localStorage.setItem('spotify_token', token);
+      localStorage.setItem('spotify_token_expiration', expirationTime);
+
       // Reindirizza alla home
       navigate('/');
     } else {
