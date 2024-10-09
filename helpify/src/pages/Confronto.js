@@ -1,11 +1,11 @@
 // src/pages/Confronto.js
 import React from 'react';
+import Comparison from '../components/Comparison/Comparison';
 
 const Confronto = () => {
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Confronto</h1>
-      <p>Questa sezione permetterà di confrontare artisti e brani.</p>
+      <Comparison />
     </div>
   );
 };
