@@ -40,11 +40,13 @@ const Navbar = () => {
     const scopes = [
       'playlist-modify-public',
       'playlist-modify-private',
+      'playlist-read-private', // Necessario per leggere le playlist private
+      'playlist-read-collaborative', // Necessario per leggere le playlist collaborative
       'user-read-private',
       'user-read-email',
       'user-top-read',
       // Altri scope necessari
-    ];
+    ];   
     const authEndpoint = 'https://accounts.spotify.com/authorize';
     const responseType = 'token';
     const showDialog = true;

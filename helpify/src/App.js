@@ -22,6 +22,7 @@ function App() {
         <Route path="/statistiche" element={<Statistiche />} />
         <Route path="/confronto" element={<Confronto />} />
         <Route path="/gestione-playlist" element={<GestionePlaylist />} />
+        <Route path="/gestione-playlist/:playlistId" element={<GestionePlaylist />} />
         <Route path="/mood-monitor" element={<MoodMonitor />} />
         <Route path="/analisi-brano" element={<AnalisiBrano />} />
         <Route path="/time-capsule" element={<TimeCapsule />} />

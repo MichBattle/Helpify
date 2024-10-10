@@ -1,11 +1,20 @@
 // src/pages/GestionePlaylist.js
 import React from 'react';
+import PlaylistList from '../components/PlaylistManagement/PlaylistList';
+import PlaylistDetails from '../components/PlaylistManagement/PlaylistDetails';
+import { useParams } from 'react-router-dom';
+import '../components/PlaylistManagement/PlaylistManagement.css';
 
 const GestionePlaylist = () => {
+  const { playlistId } = useParams();
+
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Gestione Playlist</h1>
-      <p>Questa sezione permetterà di gestire le tue playlist.</p>
+    <div className="gestione-playlist">
+      {playlistId ? (
+        <PlaylistDetails playlistId={playlistId} />
+      ) : (
+        <PlaylistList />
+      )}
     </div>
   );
 };
