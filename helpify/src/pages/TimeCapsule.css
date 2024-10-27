@@ -1,0 +1,55 @@
+.time-capsule-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #1db954;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.time-capsule-container h1 {
+  margin-bottom: 20px;
+}
+
+.time-capsule-container p {
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+
+.time-capsule-container button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #1db954;
+  background-color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.time-capsule-container button:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.time-capsule-container button:hover:not(:disabled) {
+  background-color: #f1f1f1;
+}
+
+.playlist-link {
+  margin-top: 20px;
+}
+
+.playlist-link a {
+  color: #1ed760;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.error-message {
+  margin-top: 20px;
+  color: #ff4d4d;
+  font-weight: bold;
+}

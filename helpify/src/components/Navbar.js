@@ -90,11 +90,6 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/mood-monitor" className={({ isActive }) => isActive ? 'active' : ''}>
-            Mood Monitor
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/analisi-brano" className={({ isActive }) => isActive ? 'active' : ''}>
             Analisi Brano
           </NavLink>
