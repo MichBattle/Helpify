@@ -1,4 +1,3 @@
-// src/components/PlaylistManagement/CreatePlaylist.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import './PlaylistManagement.css';
@@ -25,7 +24,6 @@ const CreatePlaylist = () => {
 
     setCreating(true);
     try {
-      // Recupera l'ID dell'utente
       const userResponse = await axios.get('https://api.spotify.com/v1/me', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -33,7 +31,6 @@ const CreatePlaylist = () => {
       });
       const userId = userResponse.data.id;
 
-      // Crea la nuova playlist
       await axios.post(
         `https://api.spotify.com/v1/users/${userId}/playlists`,
         {

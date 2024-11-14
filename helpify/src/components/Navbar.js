@@ -1,4 +1,3 @@
-// src/components/Navbar.js
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaSpotify } from 'react-icons/fa';
@@ -40,12 +39,11 @@ const Navbar = () => {
     const scopes = [
       'playlist-modify-public',
       'playlist-modify-private',
-      'playlist-read-private', // Necessario per leggere le playlist private
-      'playlist-read-collaborative', // Necessario per leggere le playlist collaborative
+      'playlist-read-private', 
+      'playlist-read-collaborative', 
       'user-read-private',
       'user-read-email',
       'user-top-read',
-      // Altri scope necessari
     ];   
     const authEndpoint = 'https://accounts.spotify.com/authorize';
     const responseType = 'token';
@@ -87,11 +85,6 @@ const Navbar = () => {
         <li>
           <NavLink to="/gestione-playlist" className={({ isActive }) => isActive ? 'active' : ''}>
             Gestione Playlist
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/analisi-brano" className={({ isActive }) => isActive ? 'active' : ''}>
-            Analisi Brano
           </NavLink>
         </li>
         <li>

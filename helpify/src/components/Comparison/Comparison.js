@@ -1,4 +1,3 @@
-// src/components/Comparison/Comparison.js
 import React, { useState } from 'react';
 import SearchSelect from './SearchSelect';
 import CompareBarChart from './CompareBarChart';

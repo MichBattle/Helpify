@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -7,7 +6,6 @@ import PlaylistPersonalizzate from './pages/PlaylistPersonalizzate';
 import Statistiche from './pages/Statistiche';
 import Confronto from './pages/Confronto';
 import GestionePlaylist from './pages/GestionePlaylist';
-import AnalisiBrano from './pages/AnalisiBrano';
 import TimeCapsule from './pages/TimeCapsule';
 import Callback from './pages/Callback';
 
@@ -22,7 +20,6 @@ function App() {
         <Route path="/confronto" element={<Confronto />} />
         <Route path="/gestione-playlist" element={<GestionePlaylist />} />
         <Route path="/gestione-playlist/:playlistId" element={<GestionePlaylist />} />
-        <Route path="/analisi-brano" element={<AnalisiBrano />} />
         <Route path="/time-capsule" element={<TimeCapsule />} />
         <Route path="/callback" element={<Callback />} />
       </Routes>

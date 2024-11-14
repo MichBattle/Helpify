@@ -1,4 +1,3 @@
-// src/components/Statistics/Statistics.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TopTracks from './TopTracks';
@@ -7,7 +6,7 @@ import TopGenres from './TopGenres';
 import './Statistics.css';
 
 const Statistics = () => {
-  const [timeRange, setTimeRange] = useState('medium_term'); // Default: Ultimi 6 mesi
+  const [timeRange, setTimeRange] = useState('medium_term'); 
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
   const [topGenres, setTopGenres] = useState([]);
@@ -31,7 +30,6 @@ const Statistics = () => {
       setLoading(true);
 
       try {
-        // Fetch Top Tracks
         const tracksResponse = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -43,7 +41,6 @@ const Statistics = () => {
         });
         setTopTracks(tracksResponse.data.items);
 
-        // Fetch Top Artists
         const artistsResponse = await axios.get('https://api.spotify.com/v1/me/top/artists', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,7 +52,6 @@ const Statistics = () => {
         });
         setTopArtists(artistsResponse.data.items);
 
-        // Aggregate Top Genres
         const genresCount = {};
         artistsResponse.data.items.forEach((artist) => {
           artist.genres.forEach((genre) => {
@@ -63,7 +59,6 @@ const Statistics = () => {
           });
         });
 
-        // Convert genresCount to an array and sort by count descending
         const sortedGenres = Object.entries(genresCount)
           .map(([genre, count]) => ({ genre, count }))
           .sort((a, b) => b.count - a.count)

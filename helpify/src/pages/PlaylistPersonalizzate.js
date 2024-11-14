@@ -1,4 +1,3 @@
-// src/pages/PlaylistPersonalizzate.js
 import React from 'react';
 import PlaylistGenerator from '../components/PlaylistGenerator/PlaylistGenerator';
 

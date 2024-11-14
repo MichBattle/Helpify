@@ -1,4 +1,3 @@
-// src/pages/Confronto.js
 import React from 'react';
 import Comparison from '../components/Comparison/Comparison';
 

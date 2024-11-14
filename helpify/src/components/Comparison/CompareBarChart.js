@@ -1,4 +1,3 @@
-// src/components/Comparison/CompareBarChart.js
 import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
 import axios from 'axios';
@@ -17,7 +16,6 @@ const CompareBarChart = ({ title, items, type, criteria }) => {
 
       try {
         if (type === 'artist') {
-          // Fetch artist data individually
           const promises = items.map(async (item) => {
             const response = await axios.get(`https://api.spotify.com/v1/artists/${item.value}`, {
               headers: {
@@ -41,7 +39,6 @@ const CompareBarChart = ({ title, items, type, criteria }) => {
           const results = await Promise.all(promises);
           setData(results);
         } else if (type === 'track') {
-          // Fetch audio features in bulk
           const trackIds = items.map((item) => item.value).join(',');
           const response = await axios.get('https://api.spotify.com/v1/audio-features', {
             headers: {
@@ -52,7 +49,6 @@ const CompareBarChart = ({ title, items, type, criteria }) => {
             },
           });
 
-          // Fetch track names
           const tracksResponse = await axios.get('https://api.spotify.com/v1/tracks', {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -66,7 +62,7 @@ const CompareBarChart = ({ title, items, type, criteria }) => {
           const tracks = tracksResponse.data.tracks;
 
           const combinedData = audioFeatures.map((features, index) => {
-            if (!features) return null; // Handle possible null values
+            if (!features) return null; 
             let value;
             if (criteria === 'danceability' || criteria === 'valence' || criteria === 'energy' ||
                 criteria === 'acousticness' || criteria === 'liveness' || criteria === 'danceability') {
@@ -74,7 +70,6 @@ const CompareBarChart = ({ title, items, type, criteria }) => {
             } else if (criteria === 'loudness') {
               value = features.loudness;
             } else if (criteria === 'tonality') {
-              // Tonality: Combine key and mode for better readability
               const keyMap = ['C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭', 'A', 'A♯/B♭', 'B'];
               const modeMap = ['Minor', 'Major'];
               value = `${keyMap[features.key]} ${modeMap[features.mode]}`;

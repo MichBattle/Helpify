@@ -1,5 +1,3 @@
-/* src/components/Statistics/Statistics.css */
-
 .statistics {
     max-width: 1000px;
     margin: 0 auto;
@@ -93,7 +91,6 @@
     font-size: 14px;
   }
   
-  /* Responsivo */
   @media (min-width: 768px) {
     .statistics-content {
       flex-direction: row;

@@ -1,4 +1,3 @@
-// src/components/PlaylistGenerator/PlaylistGenerator.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
@@ -19,7 +18,6 @@ const PlaylistGenerator = () => {
     { value: 'sad', label: 'Triste' },
     { value: 'energetic', label: 'Energetico' },
     { value: 'calm', label: 'Calmo' },
-    // Aggiungi altri mood se necessario
   ];
 
   const playlistOptions = [
@@ -36,7 +34,6 @@ const PlaylistGenerator = () => {
       return;
     }
 
-    // Ottenere i top 10 artisti dell'utente
     const fetchTopArtists = async () => {
       try {
         const response = await axios.get('https://api.spotify.com/v1/me/top/artists?limit=10', {
@@ -79,7 +76,6 @@ const PlaylistGenerator = () => {
           return;
         }
 
-        // Definisci le caratteristiche audio in base al mood
         let targetAudioFeatures = {};
 
         switch (mood.value) {
@@ -99,7 +95,6 @@ const PlaylistGenerator = () => {
             targetAudioFeatures = {};
         }
 
-        // Cerca brani basati sulle caratteristiche audio
         const response = await axios.get('https://api.spotify.com/v1/recommendations', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -107,13 +102,12 @@ const PlaylistGenerator = () => {
           params: {
             limit: 100,
             ...targetAudioFeatures,
-            seed_genres: 'pop', // Puoi personalizzare questo parametro
+            seed_genres: 'pop', 
           },
         });
 
         tracks = response.data.tracks;
       } else if (playlistType.value === 'weather') {
-        // Ottieni il meteo attuale utilizzando OpenWeather
         const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
         const weatherResponse = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${weather}&appid=${apiKey}&units=metric`
@@ -123,7 +117,6 @@ const PlaylistGenerator = () => {
 
         const currentWeather = weatherResponse.data.weather[0].main.toLowerCase();
 
-        // Definisci le caratteristiche audio in base al meteo
         let targetAudioFeatures = {};
 
         if (currentWeather.includes('rain')) {
@@ -145,13 +138,12 @@ const PlaylistGenerator = () => {
           params: {
             limit: 100,
             ...targetAudioFeatures,
-            seed_genres: 'pop', // Puoi personalizzare questo parametro
+            seed_genres: 'pop', 
           },
         });
 
         tracks = response.data.tracks;
       } else if (playlistType.value === 'recommended') {
-        // Usa i top 10 artisti per generare la playlist
         const seedArtists = topArtists.map((artist) => artist.id).slice(0, 5).join(',');
 
         const response = await axios.get('https://api.spotify.com/v1/recommendations', {
@@ -167,7 +159,6 @@ const PlaylistGenerator = () => {
         tracks = response.data.tracks;
       }
 
-      // Assicurati che almeno 25 brani provengano dai top 10 artisti
       const topArtistIds = topArtists.map((artist) => artist.id);
       const topArtistTracks = tracks.filter((track) => topArtistIds.includes(track.artists[0].id)).slice(0, 25);
       const otherTracks = tracks.filter((track) => !topArtistIds.includes(track.artists[0].id)).slice(0, 75);
@@ -192,7 +183,6 @@ const PlaylistGenerator = () => {
     const token = localStorage.getItem('spotify_token');
 
     try {
-      // Crea una nuova playlist
       const userResponse = await axios.get('https://api.spotify.com/v1/me', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -218,10 +208,8 @@ const PlaylistGenerator = () => {
 
       const playlistId = playlistResponse.data.id;
 
-      // Aggiungi brani alla playlist
       const trackUris = generatedTracks.map((track) => track.uri);
 
-      // Spotify consente di aggiungere fino a 100 brani per richiesta
       await axios.post(
         `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
         {

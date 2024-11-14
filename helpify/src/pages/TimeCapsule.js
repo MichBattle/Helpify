@@ -20,7 +20,6 @@ const TimeCapsule = () => {
         return;
       }
 
-      // Step 1: Ottieni l'ID dell'utente
       const userResponse = await axios.get('https://api.spotify.com/v1/me', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -28,7 +27,6 @@ const TimeCapsule = () => {
       });
       const userId = userResponse.data.id;
 
-      // Step 2: Ottieni le top 30 tracce degli ultimi 4 settimane (short_term)
       const topTracksResponse = await axios.get(
         'https://api.spotify.com/v1/me/top/tracks',
         {
@@ -44,7 +42,6 @@ const TimeCapsule = () => {
       const topTracks = topTracksResponse.data.items;
       const trackUris = topTracks.map((track) => track.uri);
 
-      // Step 3: Crea una nuova playlist
       const playlistResponse = await axios.post(
         `https://api.spotify.com/v1/users/${userId}/playlists`,
         {
@@ -61,7 +58,6 @@ const TimeCapsule = () => {
       );
       const playlistId = playlistResponse.data.id;
 
-      // Step 4: Aggiungi le tracce alla playlist
       await axios.post(
         `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
         {
@@ -75,7 +71,6 @@ const TimeCapsule = () => {
         }
       );
 
-      // Step 5: Ottieni l'URL della playlist
       setPlaylistUrl(playlistResponse.data.external_urls.spotify);
     } catch (err) {
       console.error(err);

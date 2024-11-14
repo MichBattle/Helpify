@@ -1,0 +1,21 @@
+.playlist-list {
+  padding: 20px;
+}
+
+.playlist-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.playlist-list li {
+  margin: 10px 0;
+}
+
+.playlist-list a {
+  text-decoration: none;
+  color: #1db954;
+}
+
+.playlist-list a:hover {
+  text-decoration: underline;
+}

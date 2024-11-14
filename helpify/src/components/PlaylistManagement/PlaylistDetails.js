@@ -1,4 +1,3 @@
-// src/components/PlaylistManagement/PlaylistDetails.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PlaylistManagement.css';
@@ -10,10 +9,9 @@ const PlaylistDetails = ({ playlistId }) => {
   const [loading, setLoading] = useState(false);
   const [removing, setRemoving] = useState(false);
   const [error, setError] = useState(null);
-  const [currentUserId, setCurrentUserId] = useState(null); // Stato per l'ID dell'utente corrente
-  const [excludedTracks, setExcludedTracks] = useState([]); // Stato per tracce escluse
+  const [currentUserId, setCurrentUserId] = useState(null); 
+  const [excludedTracks, setExcludedTracks] = useState([]); 
 
-  // Funzione per recuperare l'ID dell'utente corrente
   const fetchCurrentUser = async (token) => {
     try {
       const response = await axios.get('https://api.spotify.com/v1/me', {
@@ -28,7 +26,6 @@ const PlaylistDetails = ({ playlistId }) => {
     }
   };
 
-  // Funzione per recuperare tutte le tracce
   const fetchAllTracks = async (initialURL, token) => {
     let fetchedTracks = [];
     let nextURL = initialURL;
@@ -42,21 +39,18 @@ const PlaylistDetails = ({ playlistId }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        // Filtra le tracce non valide (null)
         const validTracks = response.data.items.filter(item => item.track && item.track.id);
         const invalidTracks = response.data.items.filter(item => !item.track || !item.track.id);
 
-        // Aggiorna i contatori
         fetchedTracks = [...fetchedTracks, ...validTracks];
         excluded += invalidTracks.length;
         totalFetched += response.data.items.length;
 
-        // Aggiorna il progresso
         setExcludedTracks(prev => [...prev, ...invalidTracks]);
         nextURL = response.data.next;
       } catch (err) {
         console.error('Errore nel recuperare una pagina di tracce:', err);
-        throw err; // Propaga l'errore per gestirlo altrove
+        throw err;
       }
     }
 
@@ -72,12 +66,10 @@ const PlaylistDetails = ({ playlistId }) => {
     }
 
     setLoading(true);
-    setExcludedTracks([]); // Resetta le tracce escluse
+    setExcludedTracks([]); 
     try {
-      // Recupera l'ID dell'utente corrente
       await fetchCurrentUser(token);
 
-      // Fetch Playlist Info
       const playlistResponse = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -85,12 +77,10 @@ const PlaylistDetails = ({ playlistId }) => {
       });
       setPlaylist(playlistResponse.data);
 
-      // Fetch All Tracks
       const initialURL = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=100`;
       const fetchedTracks = await fetchAllTracks(initialURL, token);
       setTracks(fetchedTracks);
 
-      // Detect Duplicates and collect positions to remove
       const trackCount = {};
       const positionsToRemove = [];
       fetchedTracks.forEach((item, index) => {
@@ -107,7 +97,6 @@ const PlaylistDetails = ({ playlistId }) => {
 
       Object.keys(trackCount).forEach((trackId) => {
         if (trackCount[trackId].count > 1) {
-          // Keep the first occurrence, remove the rest
           const duplicatePositions = trackCount[trackId].positions.slice(1);
           positionsToRemove.push(...duplicatePositions);
         }
@@ -131,7 +120,6 @@ const PlaylistDetails = ({ playlistId }) => {
 
     setRemoving(true);
     try {
-      // Preparare le posizioni delle tracce da rimuovere, ordinate in ordine decrescente
       const sortedPositions = [...duplicatePositions].sort((a, b) => b - a);
 
       for (let i = 0; i < sortedPositions.length; i += 100) {
@@ -148,7 +136,6 @@ const PlaylistDetails = ({ playlistId }) => {
       }
 
       alert('Duplicati rimossi con successo.');
-      // Ricarica i dettagli della playlist
       fetchPlaylistDetails();
     } catch (err) {
       console.error('Errore nel rimuovere i duplicati:', err);
@@ -159,14 +146,12 @@ const PlaylistDetails = ({ playlistId }) => {
 
   useEffect(() => {
     fetchPlaylistDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playlistId]);
 
   if (loading) return <p>Caricamento dei dettagli della playlist...</p>;
   if (error) return <p>{error}</p>;
   if (!playlist) return null;
 
-  // Determina se l'utente corrente è il proprietario della playlist
   const isOwner = currentUserId === playlist.owner.id;
 
   return (

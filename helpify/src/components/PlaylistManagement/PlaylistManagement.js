@@ -1,8 +1,9 @@
 import React from 'react';
 import PlaylistList from '../components/PlaylistManagement/PlaylistList';
-import PlaylistDetails from '../components/PlaylistManagement/PlaylistDetails';
+import CreatePlaylist from '../components/PlaylistManagement/CreatePlaylist';
 import { useParams } from 'react-router-dom';
-import '../components/PlaylistManagement/PlaylistManagement.css';
+import PlaylistDetails from '../components/PlaylistManagement/PlaylistDetails';
+import './GestionePlaylist.css';
 
 const GestionePlaylist = () => {
   const { playlistId } = useParams();
@@ -12,7 +13,10 @@ const GestionePlaylist = () => {
       {playlistId ? (
         <PlaylistDetails playlistId={playlistId} />
       ) : (
-        <PlaylistList />
+        <>
+          <CreatePlaylist />
+          <PlaylistList />
+        </>
       )}
     </div>
   );

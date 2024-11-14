@@ -1,4 +1,3 @@
-// src/components/Statistics/TopGenres.js
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import './Statistics.css';

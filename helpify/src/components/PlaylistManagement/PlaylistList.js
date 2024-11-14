@@ -1,4 +1,3 @@
-// src/components/PlaylistManagement/PlaylistList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -28,7 +27,7 @@ const PlaylistList = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log('Response Data:', response.data); // Aggiunto
+        console.log('Response Data:', response.data); 
         fetchedPlaylists = [...fetchedPlaylists, ...response.data.items];
         nextURL = response.data.next;
       }
@@ -43,7 +42,6 @@ const PlaylistList = () => {
 
   useEffect(() => {
     fetchPlaylists();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) return <p>Caricamento delle playlist...</p>;

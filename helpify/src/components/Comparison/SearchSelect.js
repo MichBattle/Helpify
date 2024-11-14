@@ -1,4 +1,3 @@
-// src/components/Comparison/SearchSelect.js
 import React from 'react';
 import AsyncSelect from 'react-select/async';
 import axios from 'axios';

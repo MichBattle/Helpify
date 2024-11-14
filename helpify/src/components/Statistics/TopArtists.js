@@ -1,4 +1,3 @@
-// src/components/Statistics/TopArtists.js
 import React from 'react';
 import './Statistics.css';
 
