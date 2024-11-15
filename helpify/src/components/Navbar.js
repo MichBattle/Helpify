@@ -69,22 +69,22 @@ const Navbar = () => {
       <ul className="navbar-links">
         <li>
           <NavLink to="/playlist-personalizzate" className={({ isActive }) => isActive ? 'active' : ''}>
-            Playlist Personalizzate
+          Custom Playlists
           </NavLink>
         </li>
         <li>
           <NavLink to="/statistiche" className={({ isActive }) => isActive ? 'active' : ''}>
-            Statistiche
+            Statistics
           </NavLink>
         </li>
         <li>
           <NavLink to="/confronto" className={({ isActive }) => isActive ? 'active' : ''}>
-            Confronto
+            Comparison
           </NavLink>
         </li>
         <li>
           <NavLink to="/gestione-playlist" className={({ isActive }) => isActive ? 'active' : ''}>
-            Gestione Playlist
+            Playlist Management
           </NavLink>
         </li>
         <li>
@@ -100,7 +100,7 @@ const Navbar = () => {
           </button>
         ) : (
           <button className="login-button" onClick={handleLogin}>
-            Login con Spotify
+            Login with Spotify
           </button>
         )}
       </div>

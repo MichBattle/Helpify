@@ -5,7 +5,7 @@ import './Statistics.css';
 const TopGenres = ({ genres }) => {
   return (
     <div className="top-section">
-      <h3>Top 5 Generi</h3>
+      <h3>Top 5 Genres</h3>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={genres} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />

@@ -14,22 +14,22 @@ const PlaylistGenerator = () => {
   const [playlistName, setPlaylistName] = useState('');
 
   const moods = [
-    { value: 'happy', label: 'Felice' },
-    { value: 'sad', label: 'Triste' },
-    { value: 'energetic', label: 'Energetico' },
-    { value: 'calm', label: 'Calmo' },
+    { value: 'happy', label: 'Happy' },
+    { value: 'sad', label: 'Sad' },
+    { value: 'energetic', label: 'Enercetic' },
+    { value: 'calm', label: 'Calm' },
   ];
 
   const playlistOptions = [
-    { value: 'mood', label: 'Per Mood' },
-    { value: 'weather', label: 'Per Meteo' },
-    { value: 'recommended', label: 'Consigliata' },
+    { value: 'mood', label: 'Mood' },
+    { value: 'weather', label: 'Weather' },
+    { value: 'recommended', label: 'Recommended' },
   ];
 
   useEffect(() => {
     const token = localStorage.getItem('spotify_token');
     if (!token) {
-      alert('Devi effettuare il login con Spotify per generare una playlist.');
+      alert('You must log in with Spotify to generate a playlist.');
       window.location.href = '/';
       return;
     }
@@ -43,7 +43,7 @@ const PlaylistGenerator = () => {
         });
         setTopArtists(response.data.items);
       } catch (error) {
-        console.error('Errore nel recuperare i top artisti:', error);
+        console.error('Error retrieving top artists:', error);
       }
     };
 
@@ -52,12 +52,12 @@ const PlaylistGenerator = () => {
 
   const handleGeneratePlaylist = async () => {
     if (!playlistType) {
-      alert('Per favore, seleziona il tipo di playlist.');
+      alert('Please select the playlist type.');
       return;
     }
 
     if (playlistType.value === 'weather' && !weather) {
-      alert('Per favore, inserisci una città per ottenere il meteo.');
+      alert('Please enter a city to get the weather.');
       return;
     }
 
@@ -71,7 +71,7 @@ const PlaylistGenerator = () => {
 
       if (playlistType.value === 'mood') {
         if (!mood) {
-          alert('Per favore, seleziona un mood.');
+          alert('Please select a mood.');
           setLoading(false);
           return;
         }
@@ -167,8 +167,8 @@ const PlaylistGenerator = () => {
 
       setGeneratedTracks(tracks);
     } catch (error) {
-      console.error('Errore nella generazione della playlist:', error);
-      alert('C\'è stato un errore nella generazione della playlist. Per favore, riprova.');
+      console.error('Error generating playlist:', error);
+      alert('C\'there was an error in generating the playlist. Please try again.');
     }
 
     setLoading(false);
@@ -176,7 +176,7 @@ const PlaylistGenerator = () => {
 
   const handleSavePlaylist = async () => {
     if (generatedTracks.length === 0) {
-      alert('Non ci sono brani da salvare.');
+      alert('There are no songs to save.');
       return;
     }
 
@@ -223,20 +223,20 @@ const PlaylistGenerator = () => {
         }
       );
 
-      alert('Playlist salvata con successo nel tuo account Spotify!');
+      alert('Playlist successfully saved to your Spotify account!');
       setGeneratedTracks([]);
       setPlaylistName('');
     } catch (error) {
-      console.error('Errore nel salvare la playlist:', error);
-      alert('C\'è stato un errore nel salvare la playlist. Per favore, riprova.');
+      console.error('Error saving playlist:', error);
+      alert('C\'there was an error saving the playlist. Please try again.');
     }
   };
 
   return (
     <div className="playlist-generator">
-      <h2>Genera Playlist Personalizzata</h2>
+      <h2>Generate Custom Playlist</h2>
       <div className="form-group">
-        <label>Tipo di Playlist:</label>
+        <label>Playlist Type:</label>
         <Select
           options={playlistOptions}
           value={playlistType}
@@ -247,7 +247,7 @@ const PlaylistGenerator = () => {
 
       {playlistType && playlistType.value === 'mood' && (
         <div className="form-group">
-          <label>Scegli un Mood:</label>
+          <label>Choose a Mood:</label>
           <Select
             options={moods}
             value={mood}
@@ -259,7 +259,7 @@ const PlaylistGenerator = () => {
 
       {playlistType && playlistType.value === 'weather' && (
         <div className="form-group">
-          <label>Inserisci una Città:</label>
+          <label>Enter a City:</label>
           <input
             type="text"
             value={weather}
@@ -270,17 +270,17 @@ const PlaylistGenerator = () => {
       )}
 
       <button onClick={handleGeneratePlaylist} disabled={loading}>
-        {loading ? 'Generando...' : 'Genera Playlist'}
+        {loading ? 'Generating...' : 'Generate Playlist'}
       </button>
 
       {generatedTracks.length > 0 && (
         <div className="generated-playlist">
-          <h3>Playlist Generata</h3>
+          <h3>Playlist Generated</h3>
           <input
             type="text"
             value={playlistName}
             onChange={(e) => setPlaylistName(e.target.value)}
-            placeholder="Nome della playlist"
+            placeholder="Playlist Name"
           />
           <ul>
             {generatedTracks.map((track, index) => (
@@ -289,13 +289,13 @@ const PlaylistGenerator = () => {
               </li>
             ))}
           </ul>
-          <button onClick={handleSavePlaylist}>Salva Playlist su Spotify</button>
+          <button onClick={handleSavePlaylist}>Save Playlists to Spotify</button>
         </div>
       )}
 
       {weatherData && (
         <div className="weather-info">
-          <h4>Meteo Attuale a {weatherData.name}:</h4>
+          <h4>Current Weather at {weatherData.name}:</h4>
           <p>
             {weatherData.weather[0].description}, {weatherData.main.temp}°C
           </p>

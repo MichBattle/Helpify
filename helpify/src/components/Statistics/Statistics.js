@@ -13,16 +13,16 @@ const Statistics = () => {
   const [loading, setLoading] = useState(false);
 
   const timeRanges = [
-    { value: 'short_term', label: 'Ultime 4 settimane' },
-    { value: 'medium_term', label: 'Ultimi 6 mesi' },
-    { value: 'long_term', label: 'Di sempre' },
+    { value: 'short_term', label: 'Last 4 weeks' },
+    { value: 'medium_term', label: 'Last 6 months' },
+    { value: 'long_term', label: 'All time' },
   ];
 
   useEffect(() => {
     const fetchStatistics = async () => {
       const token = localStorage.getItem('spotify_token');
       if (!token) {
-        alert('Devi effettuare il login con Spotify per visualizzare le statistiche.');
+        alert('You must log in with Spotify to view statistics.');
         window.location.href = '/';
         return;
       }
@@ -66,8 +66,8 @@ const Statistics = () => {
 
         setTopGenres(sortedGenres);
       } catch (error) {
-        console.error('Errore nel recuperare le statistiche:', error);
-        alert('C\'è stato un errore nel recuperare le statistiche. Per favore, riprova.');
+        console.error('Error retrieving statistics:', error);
+        alert('There was an error retrieving the statistics.');
       }
 
       setLoading(false);
@@ -78,9 +78,9 @@ const Statistics = () => {
 
   return (
     <div className="statistics">
-      <h2>Le Tue Statistiche Musicali</h2>
+      <h2>Your Music Statistics</h2>
       <div className="time-range-selector">
-        <label htmlFor="timeRange">Seleziona il periodo:</label>
+        <label htmlFor="timeRange">Select the period:</label>
         <select
           id="timeRange"
           value={timeRange}
@@ -95,7 +95,7 @@ const Statistics = () => {
       </div>
 
       {loading ? (
-        <p>Caricamento delle statistiche...</p>
+        <p>Loading statistics...</p>
       ) : (
         <div className="statistics-content">
           <TopTracks tracks={topTracks} />

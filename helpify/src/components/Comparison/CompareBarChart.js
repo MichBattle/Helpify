@@ -86,7 +86,7 @@ const CompareBarChart = ({ title, items, type, criteria }) => {
           setData(combinedData);
         }
       } catch (error) {
-        console.error('Errore nel recuperare i dati per il grafico:', error);
+        console.error('Error getting data for chart:', error);
         setData([]);
       }
     };
@@ -113,7 +113,7 @@ const CompareBarChart = ({ title, items, type, criteria }) => {
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        <p>Nessun dato disponibile per questo grafico.</p>
+        <p>No data available for this graph.</p>
       )}
     </div>
   );

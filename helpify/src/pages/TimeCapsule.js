@@ -15,7 +15,7 @@ const TimeCapsule = () => {
     try {
       const token = localStorage.getItem('spotify_token');
       if (!token) {
-        setError('Token non trovato. Effettua il login con Spotify.');
+        setError('Token not found. Log in with Spotify.');
         setLoading(false);
         return;
       }
@@ -45,8 +45,8 @@ const TimeCapsule = () => {
       const playlistResponse = await axios.post(
         `https://api.spotify.com/v1/users/${userId}/playlists`,
         {
-          name: `Time Capsule - Ultime 4 Settimane`,
-          description: 'Le tue 30 canzoni più ascoltate nelle ultime 4 settimane.',
+          name: `Time Capsule - Last 4 Weeks`,
+          description: 'Your 30 most listened to songs in the last 4 weeks.',
           public: false,
         },
         {
@@ -74,7 +74,7 @@ const TimeCapsule = () => {
       setPlaylistUrl(playlistResponse.data.external_urls.spotify);
     } catch (err) {
       console.error(err);
-      setError('Si è verificato un errore durante la generazione della Time Capsule.');
+      setError('An error occurred while generating the Time Capsule.');
     } finally {
       setLoading(false);
     }
@@ -84,16 +84,16 @@ const TimeCapsule = () => {
     <div className="time-capsule-container">
       <h1>Time Capsule</h1>
       <p>
-        Crea una playlist con le tue 30 canzoni più ascoltate nelle ultime 4 settimane.
+        Create a playlist with your 30 most listened to songs in the last 4 weeks.
       </p>
       <button onClick={generateTimeCapsule} disabled={loading}>
-        {loading ? 'Generando...' : 'Genera Time Capsule'}
+        {loading ? 'Generating...' : 'Generate Time Capsule'}
       </button>
       {playlistUrl && (
         <div className="playlist-link">
-          <p>La tua Time Capsule è stata creata!</p>
+          <p>Your Time Capsule has been created!</p>
           <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
-            Apri la Playlist su Spotify
+          Open the playlist on Spotify
           </a>
         </div>
       )}

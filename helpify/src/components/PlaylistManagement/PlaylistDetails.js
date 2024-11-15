@@ -21,8 +21,8 @@ const PlaylistDetails = ({ playlistId }) => {
       });
       setCurrentUserId(response.data.id);
     } catch (err) {
-      console.error('Errore nel recuperare l\'utente corrente:', err);
-      setError('C\'è stato un errore nel recuperare le informazioni dell\'utente.');
+      console.error('Error getting current user:', err);
+      setError('There was an error retrieving user information.');
     }
   };
 
@@ -49,7 +49,7 @@ const PlaylistDetails = ({ playlistId }) => {
         setExcludedTracks(prev => [...prev, ...invalidTracks]);
         nextURL = response.data.next;
       } catch (err) {
-        console.error('Errore nel recuperare una pagina di tracce:', err);
+        console.error('Error retrieving a traces page:', err);
         throw err;
       }
     }
@@ -60,7 +60,7 @@ const PlaylistDetails = ({ playlistId }) => {
   const fetchPlaylistDetails = async () => {
     const token = localStorage.getItem('spotify_token');
     if (!token) {
-      alert('Devi effettuare il login con Spotify per visualizzare i dettagli della playlist.');
+      alert('You must log in with Spotify to view playlist details.');
       window.location.href = '/';
       return;
     }
@@ -104,8 +104,8 @@ const PlaylistDetails = ({ playlistId }) => {
 
       setDuplicatePositions(positionsToRemove);
     } catch (err) {
-      console.error('Errore nel recuperare i dettagli della playlist:', err);
-      setError('C\'è stato un errore nel recuperare i dettagli della playlist.');
+      console.error('Error retrieving playlist details:', err);
+      setError('There was an error retrieving the playlist details.');
     }
     setLoading(false);
   };
@@ -113,7 +113,7 @@ const PlaylistDetails = ({ playlistId }) => {
   const handleRemoveDuplicates = async () => {
     const token = localStorage.getItem('spotify_token');
     if (!token) {
-      alert('Token mancante. Effettua nuovamente il login.');
+      alert('Missing token. Log in again.');
       window.location.href = '/';
       return;
     }
@@ -135,11 +135,11 @@ const PlaylistDetails = ({ playlistId }) => {
         });
       }
 
-      alert('Duplicati rimossi con successo.');
+      alert('Duplicates successfully removed.');
       fetchPlaylistDetails();
     } catch (err) {
-      console.error('Errore nel rimuovere i duplicati:', err);
-      alert('C\'è stato un errore nel rimuovere i duplicati.');
+      console.error('Error removing duplicates:', err);
+      alert('Error removing duplicates');
     }
     setRemoving(false);
   };
@@ -148,7 +148,7 @@ const PlaylistDetails = ({ playlistId }) => {
     fetchPlaylistDetails();
   }, [playlistId]);
 
-  if (loading) return <p>Caricamento dei dettagli della playlist...</p>;
+  if (loading) return <p>Loading playlist details...</p>;
   if (error) return <p>{error}</p>;
   if (!playlist) return null;
 
@@ -156,17 +156,17 @@ const PlaylistDetails = ({ playlistId }) => {
 
   return (
     <div className="playlist-details">
-      <h3>Gestione Playlist: {playlist.name}</h3>
-      <p>Numero totale di brani: {playlist.tracks.total}</p>
+      <h3>Playlist Management: {playlist.name}</h3>
+      <p>Tracks number: {playlist.tracks.total}</p>
 
       {duplicatePositions.length === 0 ? (
-        <p>Non sono stati trovati brani duplicati nella playlist.</p>
+        <p>No duplicate songs were found in the playlist.</p>
       ) : (
         <div className="duplicates-section">
-          <p>Sono stati trovati {duplicatePositions.length} brani duplicati.</p>
+          <p>{duplicatePositions.length} duplicates tracks found.</p>
           {isOwner && (
             <button onClick={handleRemoveDuplicates} disabled={removing}>
-              {removing ? 'Rimuovendo...' : 'Rimuovi Duplicati'}
+              {removing ? 'Removing...' : 'Removing duplicates'}
             </button>
           )}
           <ul>
@@ -174,7 +174,7 @@ const PlaylistDetails = ({ playlistId }) => {
               const track = tracks[position].track;
               return (
                 <li key={position}>
-                  {track.name} di {track.artists.map((artist) => artist.name).join(', ')} (Posizione: {position + 1})
+                  {track.name} - {track.artists.map((artist) => artist.name).join(', ')} (Position: {position + 1})
                 </li>
               );
             })}
@@ -183,11 +183,11 @@ const PlaylistDetails = ({ playlistId }) => {
       )}
 
       <div className="track-list">
-        <h4>Brani nella Playlist</h4>
+        <h4>Tracks in the playlist</h4>
         <ul>
           {tracks.map((item, index) => (
             <li key={index}>
-              {item.track.name} di {item.track.artists.map((artist) => artist.name).join(', ')}
+              {item.track.name} - {item.track.artists.map((artist) => artist.name).join(', ')}
             </li>
           ))}
         </ul>

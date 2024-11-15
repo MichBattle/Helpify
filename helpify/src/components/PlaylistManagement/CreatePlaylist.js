@@ -11,13 +11,13 @@ const CreatePlaylist = () => {
 
   const handleCreatePlaylist = async () => {
     if (!playlistName) {
-      alert('Il nome della playlist è obbligatorio.');
+      alert('The playlist name is mandatory.');
       return;
     }
 
     const token = localStorage.getItem('spotify_token');
     if (!token) {
-      alert('Devi effettuare il login con Spotify per creare una playlist.');
+      alert('You must log in with Spotify to create a playlist.');
       window.location.href = '/';
       return;
     }
@@ -46,42 +46,42 @@ const CreatePlaylist = () => {
         }
       );
 
-      alert('Playlist creata con successo!');
+      alert('Playlist created successfully!');
       setPlaylistName('');
       setDescription('');
       setPublicPlaylist(false);
     } catch (err) {
-      console.error('Errore nel creare la playlist:', err);
-      setError('C\'è stato un errore nel creare la playlist.');
+      console.error('Error creating playlist:', err);
+      setError('it was a mistake in creating the playlist.');
     }
     setCreating(false);
   };
 
   return (
     <div className="create-playlist">
-      <h3>Crea una Nuova Playlist</h3>
+      <h3>Create new playlist</h3>
       {error && <p className="error">{error}</p>}
       <div className="form-group">
-        <label htmlFor="playlistName">Nome Playlist:</label>
+        <label htmlFor="playlistName">Playlist Name:</label>
         <input
           type="text"
           id="playlistName"
           value={playlistName}
           onChange={(e) => setPlaylistName(e.target.value)}
-          placeholder="Inserisci il nome della playlist"
+          placeholder="Enter the playlist name"
         />
       </div>
       <div className="form-group">
-        <label htmlFor="description">Descrizione:</label>
+        <label htmlFor="description">Description:</label>
         <textarea
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Inserisci una descrizione (opzionale)"
+          placeholder="Enter a description (optional)"
         />
       </div>
       <div className="form-group">
-        <label htmlFor="publicPlaylist">Pubblica:</label>
+        <label htmlFor="publicPlaylist">Publish:</label>
         <input
           type="checkbox"
           id="publicPlaylist"
@@ -90,7 +90,7 @@ const CreatePlaylist = () => {
         />
       </div>
       <button onClick={handleCreatePlaylist} disabled={creating}>
-        {creating ? 'Creando...' : 'Crea Playlist'}
+        {creating ? 'Creating...' : 'Create Playlist'}
       </button>
     </div>
   );

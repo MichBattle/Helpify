@@ -39,7 +39,7 @@ const SearchSelect = ({ type, selectedItems, setSelectedItems, max }) => {
 
       callback(options);
     } catch (error) {
-      console.error('Errore nella ricerca:', error);
+      console.error('Search error:', error);
       callback([]);
     }
   };
@@ -59,8 +59,8 @@ const SearchSelect = ({ type, selectedItems, setSelectedItems, max }) => {
       defaultOptions
       value={selectedItems}
       onChange={handleChange}
-      placeholder={`Cerca e seleziona fino a ${max} ${type === 'artist' ? 'artisti' : 'brani'}`}
-      noOptionsMessage={() => 'Nessun risultato trovato'}
+      placeholder={`Search and select up to ${max} ${type === 'artist' ? 'artists' : 'tracks'}`}
+      noOptionsMessage={() => 'No results found'}
       isClearable
     />
   );

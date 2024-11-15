@@ -11,7 +11,7 @@ const PlaylistItem = ({ playlist }) => {
         <p>{playlist.tracks.total} brani</p>
       </div>
       <Link to={`/gestione-playlist/${playlist.id}`} className="btn btn--details">
-        Dettagli
+        Details
       </Link>
     </li>
   );

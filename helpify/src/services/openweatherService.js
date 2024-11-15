@@ -17,7 +17,7 @@ export const fetchWeather = async (city) => {
     );
     return response.data;
   } catch (err) {
-    console.error('Errore nel recupero del meteo:', err);
-    throw new Error('Impossibile recuperare i dati meteo.');
+    console.error('Error retrieving weather:', err);
+    throw new Error('Unable to retrieve weather data.');
   }
 };

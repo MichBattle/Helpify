@@ -4,7 +4,7 @@ import './Statistics.css';
 const TopArtists = ({ artists }) => {
   return (
     <div className="top-section">
-      <h3>Top 10 Artisti</h3>
+      <h3>Top 10 Artists</h3>
       <ul className="list artists-list">
         {artists.map((artist, index) => (
           <li key={artist.id} className="artist-item">

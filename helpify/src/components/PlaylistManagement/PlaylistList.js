@@ -11,7 +11,7 @@ const PlaylistList = () => {
   const fetchPlaylists = async () => {
     const token = localStorage.getItem('spotify_token');
     if (!token) {
-      alert('Devi effettuare il login con Spotify per visualizzare le playlist.');
+      alert('You must log in with Spotify to view playlists.');
       window.location.href = '/';
       return;
     }
@@ -34,8 +34,8 @@ const PlaylistList = () => {
 
       setPlaylists(fetchedPlaylists);
     } catch (err) {
-      console.error('Errore nel recuperare le playlist:', err);
-      setError('C\'è stato un errore nel recuperare le playlist.');
+      console.error('Error retrieving playlists:', err);
+      setError('There was an error retrieving the playlists.');
     }
     setLoading(false);
   };
@@ -44,20 +44,20 @@ const PlaylistList = () => {
     fetchPlaylists();
   }, []);
 
-  if (loading) return <p>Caricamento delle playlist...</p>;
+  if (loading) return <p>Loading playlists...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="playlist-list">
-      <h3>Le Tue Playlist</h3>
+      <h3>Your Playlists</h3>
       {playlists.length === 0 ? (
-        <p>Non hai playlist.</p>
+        <p>You have no playlist.</p>
       ) : (
         <ul>
           {playlists.map((playlist) => (
             <li key={playlist.id}>
               <Link to={`/gestione-playlist/${playlist.id}`}>
-                {playlist.name} ({playlist.tracks.total} brani)
+                {playlist.name} ({playlist.tracks.total} tracks)
               </Link>
             </li>
           ))}

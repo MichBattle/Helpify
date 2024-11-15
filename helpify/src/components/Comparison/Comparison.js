@@ -11,8 +11,8 @@ const Comparison = () => {
   const [trackCriteria, setTrackCriteria] = useState('danceability');
 
   const artistComparisonCriteria = [
-    { value: 'popularity', label: 'Popolarità' },
-    { value: 'followers', label: 'Numero di Follower' },
+    { value: 'popularity', label: 'Popularity' },
+    { value: 'followers', label: 'Follower Number' },
   ];
 
   const trackComparisonCriteria = [
@@ -26,11 +26,11 @@ const Comparison = () => {
 
   return (
     <div className="comparison">
-      <h2>Confronto tra Artisti e Brani</h2>
+      <h2>Comparison between Artists and Songs</h2>
       
       <div className="comparison-controls">
         <div className="selection">
-          <h3>Seleziona Artisti</h3>
+          <h3>Select Artists</h3>
           <SearchSelect
             type="artist"
             selectedItems={selectedArtists}
@@ -40,7 +40,7 @@ const Comparison = () => {
         </div>
         
         <div className="criteria">
-          <h3>Seleziona Criterio di Confronto per Artisti</h3>
+          <h3>Select Comparison Criteria for Artists</h3>
           <select value={artistCriteria} onChange={(e) => setArtistCriteria(e.target.value)}>
             {artistComparisonCriteria.map((criterion) => (
               <option key={criterion.value} value={criterion.value}>
@@ -51,7 +51,7 @@ const Comparison = () => {
         </div>
 
         <div className="selection">
-          <h3>Seleziona Brani</h3>
+          <h3>Select Tracks</h3>
           <SearchSelect
             type="track"
             selectedItems={selectedTracks}
@@ -61,7 +61,7 @@ const Comparison = () => {
         </div>
         
         <div className="criteria">
-          <h3>Seleziona Criterio di Confronto per Brani</h3>
+          <h3>Select Comparison Criteria for Songs</h3>
           <select value={trackCriteria} onChange={(e) => setTrackCriteria(e.target.value)}>
             {trackComparisonCriteria.map((criterion) => (
               <option key={criterion.value} value={criterion.value}>
@@ -75,7 +75,7 @@ const Comparison = () => {
       <div className="charts">
         {selectedArtists.length > 0 && (
           <CompareBarChart
-            title="Confronto Artisti"
+            title="Artists Comparison"
             items={selectedArtists}
             type="artist"
             criteria={artistCriteria}
@@ -84,7 +84,7 @@ const Comparison = () => {
         
         {selectedTracks.length > 0 && (
           <CompareBarChart
-            title="Confronto Brani"
+            title="Tracks Comparison"
             items={selectedTracks}
             type="track"
             criteria={trackCriteria}

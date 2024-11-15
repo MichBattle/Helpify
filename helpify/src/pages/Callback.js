@@ -18,14 +18,14 @@ const Callback = () => {
 
       navigate('/');
     } else {
-      console.error('Token di accesso non trovato');
+      console.error('Access Token not found');
       navigate('/');
     }
   }, [navigate]);
 
   return (
     <div style={{ padding: '40px', textAlign: 'center' }}>
-      <h2>Autenticazione in corso...</h2>
+      <h2>Authentication...</h2>
     </div>
   );
 };
