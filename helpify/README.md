@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+Helpify
+=======
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Helpify è un'applicazione web che permette agli utenti di interagire con il proprio account Spotify attraverso un sistema di autenticazione OAuth2. Offre una serie di funzionalità avanzate per migliorare l'esperienza di ascolto, tra cui la creazione di playlist personalizzate, visualizzazione di statistiche dettagliate, confronto tra artisti e brani, gestione avanzata delle playlist e una speciale funzione "Time Capsule".
 
-## Available Scripts
+Caratteristiche
+---------------
 
-In the project directory, you can run:
+### 1\. Login con Spotify tramite OAuth2
 
-### `npm start`
+Autentica gli utenti in modo sicuro utilizzando il sistema OAuth2 di Spotify, garantendo l'accesso alle funzionalità personalizzate senza compromettere la sicurezza dei dati.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2\. Playlist Personalizzate
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Genera playlist su misura in base a diversi criteri:
 
-### `npm test`
+-   **Mood:** Seleziona uno stato d'animo tra felice, triste, energetico o calmo. L'algoritmo determina il mood delle canzoni analizzando tonalità, valence, energia, danceability, acousticness, liveness e loudness.
+-   **Meteo:** Crea playlist in base alle condizioni meteorologiche attuali utilizzando l'API OpenWeather.
+-   **Consigliata:** Suggerisce canzoni degli autori tra i top 10 artisti dell'utente.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3\. Statistiche
 
-### `npm run build`
+Visualizza le statistiche di ascolto personalizzate:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   **Top 10 Brani**
+-   **Top 10 Artisti**
+-   **Top 5 Generi**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Gli utenti possono selezionare il periodo di analisi tra 4 settimane, 6 mesi e sempre.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 4\. Confronto
 
-### `npm run eject`
+Permette di confrontare fino a 3 artisti o brani tramite grafici a barre:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+-   **Artisti:** Confronta la popolarità o il numero di follower.
+-   **Brani:** Confronta parametri come danceability, valence, energia, acousticness, liveness e loudness.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 5\. Gestione Playlist
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Gestisce tutte le playlist dell'account:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-   Visualizza tutte le playlist e i brani che contengono.
+-   Per le playlist modificabili sarà possibile rimuovere i brani duplicati.
 
-## Learn More
+### 6\. Time Capsule
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Genera una playlist speciale contenente le 30 canzoni più ascoltate dall'utente nelle ultime 4 settimane.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+API Utilizzate
+--------------
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   **Spotify Web API:** Per accedere ai dati dell'utente, creare e gestire playlist, ottenere informazioni su brani e artisti.
+-   **OpenWeather API:** Per ottenere le condizioni meteorologiche attuali e generare playlist basate sul meteo.
