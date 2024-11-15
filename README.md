@@ -1,53 +1,53 @@
 Helpify
 =======
 
-Helpify è un'applicazione web che permette agli utenti di interagire con il proprio account Spotify attraverso un sistema di autenticazione OAuth2. Offre una serie di funzionalità avanzate per migliorare l'esperienza di ascolto, tra cui la creazione di playlist personalizzate, visualizzazione di statistiche dettagliate, confronto tra artisti e brani, gestione avanzata delle playlist e una speciale funzione "Time Capsule".
+Helpify is a web application that allows users to interact with their Spotify accounts through an OAuth2 authentication system. It offers a range of advanced features to enhance the listening experience, including the creation of personalized playlists, detailed statistics visualization, comparisons between artists and tracks, advanced playlist management, and a special "Time Capsule" feature.
 
-Caratteristiche
----------------
+Features
+--------
 
-### 1\. Login con Spotify tramite OAuth2
+### 1. Login with Spotify via OAuth2
 
-Autentica gli utenti in modo sicuro utilizzando il sistema OAuth2 di Spotify, garantendo l'accesso alle funzionalità personalizzate senza compromettere la sicurezza dei dati.
+Securely authenticate users using Spotify's OAuth2 system, ensuring access to personalized features without compromising data security.
 
-### 2\. Playlist Personalizzate
+### 2. Personalized Playlists
 
-Genera playlist su misura in base a diversi criteri:
+Generate tailored playlists based on various criteria:
 
--   **Mood:** Seleziona uno stato d'animo tra felice, triste, energetico o calmo. L'algoritmo determina il mood delle canzoni analizzando tonalità, valence, energia, danceability, acousticness, liveness e loudness.
--   **Meteo:** Crea playlist in base alle condizioni meteorologiche attuali utilizzando l'API OpenWeather.
--   **Consigliata:** Suggerisce canzoni degli autori tra i top 10 artisti dell'utente.
+-   **Mood:** Select a mood such as happy, sad, energetic, or calm. The algorithm determines the mood of the songs by analyzing attributes like key, valence, energy, danceability, acousticness, liveness, and loudness.
+-   **Weather:** Create playlists based on current weather conditions using the OpenWeather API.
+-   **Recommended:** Suggest songs from the user's top 10 artists.
 
-### 3\. Statistiche
+### 3. Statistics
 
-Visualizza le statistiche di ascolto personalizzate:
+View personalized listening statistics:
 
--   **Top 10 Brani**
--   **Top 10 Artisti**
--   **Top 5 Generi**
+-   **Top 10 Tracks**
+-   **Top 10 Artists**
+-   **Top 5 Genres**
 
-Gli utenti possono selezionare il periodo di analisi tra 4 settimane, 6 mesi e sempre.
+Users can select the analysis period between 4 weeks, 6 months, and all time.
 
-### 4\. Confronto
+### 4. Comparison
 
-Permette di confrontare fino a 3 artisti o brani tramite grafici a barre:
+Allow users to compare up to 3 artists or tracks using bar charts:
 
--   **Artisti:** Confronta la popolarità o il numero di follower.
--   **Brani:** Confronta parametri come danceability, valence, energia, acousticness, liveness e loudness.
+-   **Artists:** Compare popularity or number of followers.
+-   **Tracks:** Compare parameters such as danceability, valence, energy, acousticness, liveness, and loudness.
 
-### 5\. Gestione Playlist
+### 5. Playlist Management
 
-Gestisce tutte le playlist dell'account:
+Manage all playlists in the account:
 
--   Visualizza tutte le playlist e i brani che contengono.
--   Per le playlist modificabili sarà possibile rimuovere i brani duplicati.
+-   View all playlists and the tracks they contain.
+-   For editable playlists, it will be possible to remove duplicate tracks.
 
-### 6\. Time Capsule
+### 6. Time Capsule
 
-Genera una playlist speciale contenente le 30 canzoni più ascoltate dall'utente nelle ultime 4 settimane.
+Generate a special playlist containing the user's top 30 most listened-to songs from the last 4 weeks.
 
-API Utilizzate
---------------
+APIs Used
+---------
 
--   **Spotify Web API:** Per accedere ai dati dell'utente, creare e gestire playlist, ottenere informazioni su brani e artisti.
--   **OpenWeather API:** Per ottenere le condizioni meteorologiche attuali e generare playlist basate sul meteo.
+-   **Spotify Web API:** To access user data, create and manage playlists, and obtain information about tracks and artists.
+-   **OpenWeather API:** To obtain current weather conditions and generate weather-based playlists.
